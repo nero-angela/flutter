@@ -224,6 +224,7 @@ class TabController extends ChangeNotifier {
         .whenCompleteOrCancel(() {
           if (_animationController != null) { // don't notify if we've been disposed
             _indexIsChangingCount -= 1;
+            _indexPositionWhenTapping = _animationController!.value;
             notifyListeners();
           }
         });
@@ -234,6 +235,13 @@ class TabController extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  /// the value of animation controller at the moment of tapping a tab
+  ///
+  /// This value is needed to calculate the position of the indicator
+  /// when selecting a tab during animation.
+  double get indexPositionWhenTapping => _indexPositionWhenTapping ?? _previousIndex.toDouble();
+  double? _indexPositionWhenTapping;
 
   /// The index of the currently selected tab.
   ///

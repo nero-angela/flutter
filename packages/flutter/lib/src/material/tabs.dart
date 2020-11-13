@@ -302,7 +302,7 @@ class _TabLabelBar extends Flex {
 
 double _indexChangeProgress(TabController controller) {
   final double controllerValue = controller.animation!.value;
-  final double previousIndex = controller.previousIndex.toDouble();
+  final double previousIndex = controller.indexPositionWhenTapping;
   final double currentIndex = controller.index.toDouble();
 
   // The controller's offset is changing because the user is dragging the
